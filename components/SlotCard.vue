@@ -10,7 +10,7 @@
       :disabled="slot.reserved"
       @click="$emit('select', slot)"
     >
-      <span v-if="!slot.reserved">Réserver</span>
+      <span href="#infos" v-if="!slot.reserved"><a href="#infos" id="reserve">Réserver</a></span>
       <span v-else>Déjà réservé</span>
     </button>
   </div>

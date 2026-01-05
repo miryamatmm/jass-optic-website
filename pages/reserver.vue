@@ -147,7 +147,7 @@ async function submit() {
       </div>
 
       <!-- ÉTAPE 2 : Infos -->
-      <div class="card">
+      <div class="card" id="infos">
         <h2>Vos informations</h2>
         <p class="step-desc">
           Ces informations nous permettent de préparer votre dossier.

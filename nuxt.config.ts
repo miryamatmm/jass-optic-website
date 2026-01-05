@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
 
+  ssr: true,
   pages: true, // FORCE LE ROUTER PAGES
 
   app: {
@@ -30,8 +31,6 @@ export default defineNuxtConfig({
   css: [
   "@/assets/css/main.css"
   ],
-
-  ssr: true,
 
   nitro: {
     preset: "netlify"

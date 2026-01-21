@@ -1,10 +1,31 @@
 import { Resend } from 'resend'
 
+/**
+ * Formate une date ISO (YYYY-MM-DD) en français :
+ * ex: "2026-02-02" -> "lundi 2 février 2026"
+ */
+function formatDateFr(dateStr: string) {
+  const date = new Date(dateStr)
+
+  const formatted = new Intl.DateTimeFormat('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date)
+
+  // Majuscule sur le jour
+  return formatted.charAt(0).toUpperCase() + formatted.slice(1)
+}
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const config = useRuntimeConfig()
 
   const resend = new Resend(config.resendApiKey)
+
+  // Date formatée pour l’email
+  const formattedDate = formatDateFr(body.slotDate)
 
   try {
     const { error } = await resend.emails.send({
@@ -55,16 +76,18 @@ export default defineEventHandler(async (event) => {
             border-radius:6px;
             padding:20px;
           ">
-            <p style="margin:0;font-size:15px;color:#555;">Rendez-vous prévu</p>
+            <p style="margin:0;font-size:15px;color:#555;">
+              Rendez-vous prévu
+            </p>
             <p style="margin:8px 0 0 0;font-size:17px;">
-              <strong>${body.slotDate}</strong><br>
+              <strong>${formattedDate}</strong><br>
               ${body.slotHour}
             </p>
           </div>
 
           <div style="height:30px;"></div>
 
-          <!-- INFOS -->
+          <!-- INFOS CLIENT -->
           <p style="font-size:15px;color:#444;line-height:1.6;">
             <strong>Nom :</strong> ${body.firstname} ${body.lastname}<br>
             <strong>Téléphone :</strong> ${body.phone}<br>
@@ -75,7 +98,7 @@ export default defineEventHandler(async (event) => {
 
           <!-- MESSAGE -->
           <p style="font-size:15px;color:#444;line-height:1.6;">
-            Si vous avez un empêchement ou besoin d’informations complémentaires,  
+            Si vous avez un empêchement ou besoin d’informations complémentaires,
             n’hésitez pas à nous contacter.
           </p>
 
@@ -101,14 +124,14 @@ export default defineEventHandler(async (event) => {
     })
 
     if (error) {
-      console.error(error)
+      console.error("RESEND ERROR:", error)
       return { success: false }
     }
 
     return { success: true }
 
-  } catch (e) {
-    console.error(e)
+  } catch (err) {
+    console.error("SEND EMAIL ERROR:", err)
     return { success: false }
   }
 })

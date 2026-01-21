@@ -1,5 +1,3 @@
-import jwt from "jsonwebtoken"
-
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const config = useRuntimeConfig()
@@ -11,17 +9,12 @@ export default defineEventHandler(async (event) => {
     return { error: "Identifiants incorrects" }
   }
 
-  const token = jwt.sign({ role: "admin" }, config.sessionSecret, {
-    expiresIn: "7d",
+  setCookie(event, "admin_session", config.adminKey, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    path: "/"
   })
-
-setCookie(event, "admin_session", token, {
-  httpOnly: true,
-  secure: false,    // local uniquement
-  sameSite: "none", // Chrome + Safari OK
-  path: "/"
-})
-
 
   return { success: true }
 })

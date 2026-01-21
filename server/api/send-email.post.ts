@@ -7,88 +7,108 @@ export default defineEventHandler(async (event) => {
   const resend = new Resend(config.resendApiKey)
 
   try {
-    const { data, error } = await resend.emails.send({
-    // "Réservations Jass Optic <reservation@jassoptic.fr>" qd le nom de domaine sera vérif
-    from: "Service Réservation <onboarding@resend.dev>", // après 
-    to: "miryam.atamna.cv@gmail.com",   // uniquement moi // et j'enverrais directement à body.email
-    subject: "Enregistrement de votre réservation",
-    html: String.raw `
+    const { error } = await resend.emails.send({
+      from: "Jass Optic <reservation@jassoptic.fr>",
+      to: body.email,
+      subject: "Votre rendez-vous chez Jass Optic",
+      html: `
       <div style="
-        background:#e6f7f7;
-        padding:30px;
-        font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+        background:#fafafa;
+        padding:40px 20px;
+        font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;
+        color:#111;
       ">
+
         <div style="
-          max-width:600px;
-          margin:auto;
-          background:white;
-          border-radius:14px;
-          padding:25px;
-          box-shadow:0 3px 12px rgba(0,0,0,0.08);
-          border-top:5px solid #27a7a5;
+          max-width:560px;
+          margin:0 auto;
+          background:#ffffff;
+          padding:40px;
+          border-radius:8px;
         ">
 
-          <!-- HEADER -->
-          <h2 style="
-            color:#0f6c7e;
-            margin-top:0;
+          <!-- TITRE -->
+          <h1 style="
             font-size:26px;
-            font-weight:700;
+            font-weight:500;
+            margin:0 0 20px 0;
             text-align:center;
           ">
-            Nouvelle réservation
-          </h2>
+            Confirmation de rendez-vous
+          </h1>
 
-          <p style="text-align:center;color:#4c6666;margin-top:5px;">
-            Vous avez effectué une demande de rendez-vous.
+          <p style="
+            font-size:16px;
+            line-height:1.6;
+            text-align:center;
+            color:#333;
+          ">
+            Bonjour ${body.firstname},<br>
+            Votre demande de rendez-vous chez <strong>Jass Optic</strong> a bien été prise en compte.
           </p>
 
-          <hr style="border:none;height:1px;background:#cfecec;margin:25px 0;" />
+          <div style="height:30px;"></div>
 
-          <!-- CRENEAU -->
-          <h3 style="color:#0f6c7e;margin-bottom:10px;">📅 Créneau réservé</h3>
-          <p style="font-size:16px;color:#244;margin:0;">
-            <strong>Date :</strong> ${body.slotDate}<br/>
-            <strong>Heure :</strong> ${body.slotHour}
+          <!-- CRÉNEAU -->
+          <div style="
+            border:1px solid #eee;
+            border-radius:6px;
+            padding:20px;
+          ">
+            <p style="margin:0;font-size:15px;color:#555;">Rendez-vous prévu</p>
+            <p style="margin:8px 0 0 0;font-size:17px;">
+              <strong>${body.slotDate}</strong><br>
+              ${body.slotHour}
+            </p>
+          </div>
+
+          <div style="height:30px;"></div>
+
+          <!-- INFOS -->
+          <p style="font-size:15px;color:#444;line-height:1.6;">
+            <strong>Nom :</strong> ${body.firstname} ${body.lastname}<br>
+            <strong>Téléphone :</strong> ${body.phone}<br>
+            <strong>Email :</strong> ${body.email}
           </p>
 
-          <hr style="border:none;height:1px;background:#cfecec;margin:25px 0;" />
+          <div style="height:30px;"></div>
 
-          <!-- CLIENT -->
-          <h3 style="color:#0f6c7e;margin-bottom:10px;">👤 Informations du patient</h3>
-          <p style="font-size:16px;color:#244;margin:0;">
-            <strong>Nom :</strong> ${body.firstname} ${body.lastname}<br/>
-            <strong>Email :</strong> ${body.email}<br/>
-            <strong>Téléphone :</strong> ${body.phone}
+          <!-- MESSAGE -->
+          <p style="font-size:15px;color:#444;line-height:1.6;">
+            Si vous avez un empêchement ou besoin d’informations complémentaires,  
+            n’hésitez pas à nous contacter.
           </p>
 
-          <hr style="border:none;height:1px;background:#cfecec;margin:25px 0;" />
+          <div style="height:40px;"></div>
 
           <!-- FOOTER -->
           <p style="
+            font-size:13px;
+            color:#888;
             text-align:center;
-            font-size:14px;
-            color:#6a7b7b;
-            margin-top:20px;
+            line-height:1.5;
           ">
-            Cet email vous a été envoyé automatiquement par le système de réservation.<br>
-            Merci de ne pas répondre directement.
+            Jass Optic<br>
+            <a href="https://jassoptic.fr" style="color:#111;text-decoration:none;">
+              jassoptic.fr
+            </a><br><br>
+            Email automatique — merci de ne pas répondre.
           </p>
 
         </div>
       </div>
-    `
+      `
     })
 
     if (error) {
-      console.log("RESEND ERROR:", error)
-      return { error }
+      console.error(error)
+      return { success: false }
     }
 
     return { success: true }
 
-  } catch (err) {
-    console.log("SEND EMAIL CATCH ERROR:", err)
-    return { error: "Email sending failed" }
+  } catch (e) {
+    console.error(e)
+    return { success: false }
   }
 })

@@ -23,15 +23,24 @@ onMounted(async () => {
   const data = await $fetch(`${config.public.supabaseUrl}/rest/v1/slots?select=*`, {
     headers: { apikey: config.public.supabaseAnonKey }
   })
+  
+  // afficher uniquement les créneaux futurs
+  const now = new Date()
 
-  // TRIER par date puis heure
-  data.sort((a, b) => {
+  const filtered = data.filter(slot => {
+    const slotDate = new Date(slot.date + "T" + slot.start_time)
+    return slotDate >= now
+  })
+
+  // Trier par date puis heure
+  filtered.sort((a, b) => {
     const da = new Date(a.date + "T" + a.start_time)
     const db = new Date(b.date + "T" + b.start_time)
     return da - db
   })
 
-  slots.value = data
+  slots.value = filtered
+
 })
 
 

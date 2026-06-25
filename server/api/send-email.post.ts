@@ -23,6 +23,7 @@ export default defineEventHandler(async (event) => {
   const resend = new Resend(config.resendApiKey)
 
   const formattedDate = formatDateFr(body.slotDate)
+  const isParticular = body.type === "particulier"
 
   // 👉 Email admin (à mettre en variable d'env plus tard si tu veux)
   const ADMIN_EMAIL = "contact@jassoptic.fr"
@@ -72,13 +73,22 @@ export default defineEventHandler(async (event) => {
     /* =========================
        EMAIL ADMIN
     ========================= */
+    const adminSubject = isParticular
+      ? "📅 [PARTICULIER] Nouvelle réservation – Jass Optic"
+      : "📅 Nouvelle réservation – Jass Optic"
+
     const adminEmail = await resend.emails.send({
       from: "Jass Optic <reservation@jassoptic.fr>",
       to: ADMIN_EMAIL,
-      subject: "📅 Nouvelle réservation – Jass Optic",
+      subject: adminSubject,
       html: `
       <div style="font-family:Inter,sans-serif;color:#111;">
-        <h2>Nouvelle réservation</h2>
+        <h2>${isParticular ? "Nouvelle réservation (particulier)" : "Nouvelle réservation"}</h2>
+
+        ${isParticular
+          ? '<p style="display:inline-block;background:#b79b6c;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:500;">PARTICULIER</p>'
+          : '<p style="display:inline-block;background:#1c1c1c;color:#fff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:500;">PRO</p>'
+        }
 
         <p>
           <strong>Date :</strong> ${formattedDate}<br>

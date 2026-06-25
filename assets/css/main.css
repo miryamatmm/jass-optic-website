@@ -412,3 +412,86 @@ a#reserve {
   font-style: italic;
 }
 
+/* ===============================
+   BADGES (admin slots / reservations)
+   =============================== */
+
+.type-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-pro {
+  background: var(--text-main);
+  color: #fff;
+}
+
+.badge-particulier {
+  background: var(--accent);
+  color: #fff;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.validated {
+  background: #e6f4ea;
+  color: #1e6e3a;
+}
+
+.status.pending {
+  background: #fff4e0;
+  color: #a86b00;
+}
+
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.header-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.empty-slots {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
+  font-style: italic;
+}
+
+.empty-slots a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.step-desc {
+  margin-bottom: 18px;
+}
+
+.selected-info {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}

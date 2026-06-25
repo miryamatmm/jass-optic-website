@@ -24,7 +24,8 @@ export default defineNuxtConfig({
     sessionSecret: process.env.SESSION_SECRET,
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
-    
+    publicBaseUrl: process.env.PUBLIC_BASE_URL,
+
     public: {
       resendApiKey: process.env.RESEND_API_KEY,
       adminEmail: process.env.ADMIN_EMAIL,
@@ -33,7 +34,8 @@ export default defineNuxtConfig({
       adminPassword: process.env.ADMIN_PASSWORD,
       sessionSecret: process.env.SESSION_SECRET,
       supabaseUrl: process.env.SUPABASE_URL,
-      supabaseAnonKey: process.env.SUPABASE_ANON_KEY
+      supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
+      publicBaseUrl: process.env.PUBLIC_BASE_URL
     }
   },
 

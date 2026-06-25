@@ -3,6 +3,11 @@ import SlotCard from '@/components/SlotCard.vue'
 import FileUpload from '@/components/FileUpload.vue'
 
 const config = useRuntimeConfig()
+const route = useRoute()
+
+// On est sur le flux "particulier" si l'URL contient /reserver/particulier
+const isParticular = computed(() => route.path === '/reserver/particulier')
+const slotType = computed(() => isParticular.value ? 'particulier' : 'pro')
 
 const slots = ref([])
 const selectedSlot = ref(null)
@@ -23,13 +28,16 @@ onMounted(async () => {
   const data = await $fetch(`${config.public.supabaseUrl}/rest/v1/slots?select=*`, {
     headers: { apikey: config.public.supabaseAnonKey }
   })
-  
-  // afficher uniquement les créneaux futurs
+
+  // afficher uniquement les créneaux futurs ET du bon type
   const now = new Date()
 
   const filtered = data.filter(slot => {
     const slotDate = new Date(slot.date + "T" + slot.start_time)
-    return slotDate >= now
+    if (slotDate < now) return false
+    // rétrocompat : si la colonne type n'existe pas (anciens slots), on les considère comme 'pro'
+    const t = slot.type === 'particulier' ? 'particulier' : 'pro'
+    return t === slotType.value
   })
 
   // Trier par date puis heure
@@ -83,7 +91,8 @@ async function submit() {
       email: email.value,
       phone: phone.value,
       ordonnance_url: ordonnancePath,
-      mutuelle_url: mutuellePath
+      mutuelle_url: mutuellePath,
+      type: slotType.value
     }
   })
 
@@ -100,7 +109,8 @@ async function submit() {
       lastname: lastname.value,
       phone: phone.value,
       slotDate: selectedSlot.value.date,
-      slotHour: `${selectedSlot.value.start_time} → ${selectedSlot.value.end_time}`
+      slotHour: `${selectedSlot.value.start_time} → ${selectedSlot.value.end_time}`,
+      type: slotType.value
     }
   })
 
@@ -148,6 +158,10 @@ async function submit() {
           :slot="slot"
           @select="selectedSlot = $event"
         />
+
+        <p v-if="slots.length === 0" class="empty-slots">
+          Aucun créneau disponible pour le moment.
+        </p>
 
         <p v-if="selectedSlot" class="selected-info">
           Créneau sélectionné :

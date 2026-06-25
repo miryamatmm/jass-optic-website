@@ -99,12 +99,21 @@ function formatSlot(slot) {
         <div class="reservation-header">
           <h3>{{ r.firstname }} {{ r.lastname }}</h3>
 
-          <span v-if="r.validated" class="status validated">
-            Validée
-          </span>
-          <span v-else class="status pending">
-            En attente
-          </span>
+          <div class="header-badges">
+            <span
+              class="type-badge"
+              :class="r.type === 'particulier' ? 'badge-particulier' : 'badge-pro'"
+            >
+              {{ r.type === 'particulier' ? 'Particulier' : 'Pro' }}
+            </span>
+
+            <span v-if="r.validated" class="status validated">
+              Validée
+            </span>
+            <span v-else class="status pending">
+              En attente
+            </span>
+          </div>
         </div>
 
         <p class="contact">

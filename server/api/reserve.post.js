@@ -20,6 +20,9 @@ export default defineEventHandler(async (event) => {
     mutuelle_url
   } = body
 
+  // type demandé par le client (default 'pro' pour rétrocompat avec /reserver public)
+  const requestedType = body.type === "particulier" ? "particulier" : "pro"
+
   // Vérifier si le créneau existe
   const { data: slot, error: slotErr } = await supabase
     .from("slots")
@@ -29,6 +32,13 @@ export default defineEventHandler(async (event) => {
 
   if (slotErr || !slot) return { error: "Slot not found" }
   if (slot.reserved) return { error: "Slot already reserved" }
+
+  // Sécurité : le type du slot doit correspondre au type demandé
+  // (empêche de réserver un créneau particulier via /reserver, et inversement)
+  const slotType = slot.type === "particulier" ? "particulier" : "pro"
+  if (slotType !== requestedType) {
+    return { error: "Slot not available for this booking flow" }
+  }
 
   // Créer la réservation
   const { error: insertErr } = await supabase
@@ -40,7 +50,8 @@ export default defineEventHandler(async (event) => {
       email,
       phone,
       ordonnance_url,
-      mutuelle_url
+      mutuelle_url,
+      type: requestedType
     })
 
   if (insertErr) {

@@ -1,0 +1,46 @@
+/* ==========================================================
+   ADMIN LOGIN
+   ========================================================== */
+.login {
+  min-height: 100vh;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 90px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login h1 {
+  text-align: center;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.login-intro {
+  text-align: center;
+  max-width: 380px;
+  margin: 0 auto 34px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.login-card {
+  padding: 34px;
+  border-radius: 26px;
+}
+
+.login-card .input {
+  margin-bottom: 14px;
+}
+
+.login-card .btn {
+  margin-top: 6px;
+}
+
+.login-card .error {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+}

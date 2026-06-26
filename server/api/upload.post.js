@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
   const supabase = createClient(
-    config.supabaseUrl,
+    config.public.supabaseUrl,
     config.supabaseServiceKey
   )
 

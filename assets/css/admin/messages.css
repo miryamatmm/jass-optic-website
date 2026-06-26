@@ -1,0 +1,79 @@
+/* ==========================================================
+   ADMIN MESSAGES
+   ========================================================== */
+.admin-messages-page {
+  max-width: 1180px;
+}
+
+.admin-messages-list {
+  margin-top: 32px;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.admin-message-card {
+  margin-bottom: 0;
+  border-radius: 24px;
+}
+
+.done-message-card {
+  opacity: 0.82;
+}
+
+.done-message-card:hover {
+  opacity: 1;
+}
+
+.admin-message-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.admin-message-header h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.admin-message-header p {
+  font-size: 13px;
+}
+
+.admin-message-contact {
+  background: var(--bg-main);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+
+.admin-message-contact p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.admin-message-contact p:last-child {
+  margin-bottom: 0;
+}
+
+.admin-message-contact a {
+  color: var(--text-main);
+}
+
+.admin-message-body {
+  border-top: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  padding: 18px 0;
+  margin-bottom: 18px;
+}
+
+.admin-message-body p {
+  color: var(--text-main);
+  white-space: pre-line;
+}

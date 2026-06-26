@@ -1,0 +1,73 @@
+/* ==========================================================
+   ADMIN REVIEWS
+   ========================================================== */
+.admin-reviews-page {
+  max-width: 1180px;
+}
+
+.admin-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admin-review-card {
+  margin-bottom: 0;
+}
+
+.admin-review-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 22px;
+}
+
+.admin-review-header h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.admin-review-header p {
+  font-size: 13px;
+}
+
+.admin-review-rating {
+  flex-shrink: 0;
+}
+
+.admin-review-message {
+  color: var(--text-main);
+  margin-bottom: 24px;
+}
+
+.admin-review-view-toggle {
+  grid-template-columns: repeat(3, 1fr);
+  width: 360px;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.done-review-card {
+  opacity: 0.82;
+}
+
+.done-review-card:hover {
+  opacity: 1;
+}
+
+.status.rejected {
+  background: #fde8e8;
+  color: #b3261e;
+}
+
+.empty-admin-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .admin-review-view-toggle {
+    width: 100%;
+  }
+}

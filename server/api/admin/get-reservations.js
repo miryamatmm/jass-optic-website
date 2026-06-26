@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
 
   const reservations = await $fetch(
-    `${config.supabaseUrl}/rest/v1/reservations?select=*,slot:slot_id(*)`,
+    `${config.public.supabaseUrl}/rest/v1/reservations?select=*,slot:slot_id(*)`,
     {
       headers: {
         apikey: config.supabaseServiceKey,

@@ -1,0 +1,188 @@
+/* ==========================================================
+   ADMIN SLOTS
+   ========================================================== */
+.admin-slots {
+  max-width: 1180px;
+}
+
+.slot,
+.slot-line,
+.slot-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slot {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.slot:last-child {
+  border-bottom: none;
+}
+
+.slot.selected {
+  font-weight: 600;
+}
+
+.empty-slots {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 20px;
+  font-style: italic;
+}
+
+.empty-slots a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.step-desc {
+  margin-bottom: 18px;
+}
+
+.selected-info {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.slots-top-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 24px;
+  margin-bottom: 42px;
+}
+
+.admin-panel-card {
+  margin-bottom: 0;
+}
+
+.admin-panel-card h2 {
+  font-size: 26px;
+  margin: 0 0 12px;
+}
+
+.form-grid,
+.particular-mail-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.form-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.particular-mail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.link-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin: 12px 0 24px;
+}
+
+.link-input {
+  font-family: monospace;
+  font-size: 13px;
+  background: var(--bg-main);
+}
+
+.send-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 8px 0 14px;
+  font-family: inherit;
+}
+
+.link-feedback {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--accent-hover);
+}
+
+.slots-list-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.slots-column {
+  min-width: 0;
+}
+
+.slots-column-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.slots-column-header h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.slots-count {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--text-main);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.slots-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.slot-admin-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.slot-hour {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.slot-admin-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.compact-btn {
+  padding: 10px 18px;
+  font-size: 13px;
+}
+
+.compact-empty {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+}

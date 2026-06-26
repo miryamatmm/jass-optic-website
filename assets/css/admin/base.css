@@ -1,0 +1,169 @@
+/* ==========================================================
+   ADMIN BASE
+   ========================================================== */
+.admin-card,
+.login-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-soft);
+  border: 1px solid var(--border-soft);
+}
+
+.admin-intro {
+  max-width: 620px;
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 42px;
+}
+
+.admin-page-heading {
+  margin-bottom: 36px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 28px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.back-link:hover {
+  color: var(--text-main);
+}
+
+.admin-message {
+  margin-bottom: 18px;
+}
+
+.error {
+  color: #b3261e;
+  margin-bottom: 18px;
+}
+
+.success {
+  color: #1e6e3a;
+  margin-bottom: 18px;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   DOWNLOAD LINKS
+   =============================== */
+.download-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.download-pill {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #f0efec;
+  color: #1c1c1c;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.download-pill:hover {
+  background: #e6e3dc;
+  transform: translateY(-1px);
+}
+
+.download-empty {
+  font-size: 13px;
+  color: #9a9a9a;
+  font-style: italic;
+}
+
+/* ===============================
+   BADGES
+   =============================== */
+.type-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-pro {
+  background: var(--text-main);
+  color: #fff;
+}
+
+.badge-particulier {
+  background: var(--accent);
+  color: #fff;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.validated {
+  background: #e6f4ea;
+  color: #1e6e3a;
+}
+
+.status.pending {
+  background: #fff4e0;
+  color: #a86b00;
+}
+
+.header-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   TOGGLE
+   =============================== */
+.link-type-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  padding: 5px;
+  margin: 12px 0 18px;
+  border-radius: 999px;
+  background: #f0efec;
+}
+
+.link-type-option {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.link-type-option.active {
+  background: var(--bg-card);
+  color: var(--text-main);
+  box-shadow: 0 6px 18px rgba(28, 28, 28, 0.08);
+}
+
+.link-type-option:hover {
+  color: var(--text-main);
+}

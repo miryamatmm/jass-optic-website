@@ -1,0 +1,95 @@
+/* ==========================================================
+   ADMIN RESPONSIVE
+   ========================================================== */
+@media (max-width: 1000px) {
+  .slots-top-grid,
+  .slots-list-grid,
+  .reservations-list,
+  .messages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .admin-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .page.admin {
+    max-width: 780px;
+  }
+
+  .admin-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-card {
+    min-height: 150px;
+    padding: 28px;
+  }
+
+  .login {
+    padding: 70px 22px;
+  }
+
+  .login-card {
+    padding: 28px;
+    border-radius: 22px;
+  }
+
+  .admin-review-header,
+  .admin-message-header,
+  .reservation-top {
+    flex-direction: column;
+  }
+
+  .admin-review-rating {
+    margin-top: -8px;
+  }
+
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .btn-row .btn {
+    width: 100%;
+  }
+
+  .form-grid,
+  .particular-mail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .link-row {
+    grid-template-columns: 1fr;
+  }
+
+  .slot-admin-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .slot-admin-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .compact-btn {
+    flex-shrink: 0;
+  }
+
+  .reservations-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reservations-filter-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .reservation-view-toggle {
+    width: 100%;
+  }
+}

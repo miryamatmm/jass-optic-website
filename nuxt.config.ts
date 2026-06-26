@@ -27,7 +27,6 @@ export default defineNuxtConfig({
     publicBaseUrl: process.env.PUBLIC_BASE_URL,
 
     public: {
-      resendApiKey: process.env.RESEND_API_KEY,
       adminEmail: process.env.ADMIN_EMAIL,
       supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY,
       adminKey: process.env.ADMIN_KEY,

@@ -25,8 +25,7 @@ export default defineEventHandler(async (event) => {
   const formattedDate = formatDateFr(body.slotDate)
   const isParticular = body.type === "particulier"
 
-  // 👉 Email admin (à mettre en variable d'env plus tard si tu veux)
-  const ADMIN_EMAIL = "contact@jassoptic.fr"
+  const ADMIN_EMAIL = "jassoptic@gmail.com"
 
   try {
     /* =========================

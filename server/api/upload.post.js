@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
   }
 
   // URL accessible publiquement
-  const publicUrl = `${config.supabaseUrl}/storage/v1/object/public/uploads/${filePath}`
+  const publicUrl = `${config.public.supabaseUrl}/storage/v1/object/public/uploads/${filePath}`
 
   return { url: publicUrl }
 })

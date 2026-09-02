@@ -2,25 +2,35 @@ import { createClient } from '@supabase/supabase-js'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
+  const id = getRouterParam(event, 'id')
+
+  if (!id) {
+    return {
+      success: false,
+      error: 'Identifiant de réservation manquant.'
+    }
+  }
 
   const supabase = createClient(
-    config.supabaseUrl,
+    config.public.supabaseUrl,
     config.supabaseServiceKey
   )
 
-  // Récupérer l'id dans l'URL
-  const id = event.context.params.id
-
-  // Mise à jour : validated = true
   const { error } = await supabase
-    .from("reservations")
+    .from('reservations')
     .update({ validated: true })
-    .eq("id", id)
+    .eq('id', id)
 
   if (error) {
-    console.error(error)
-    return { error: "Validation failed" }
+    console.error('VALIDATE RESERVATION ERROR:', error)
+
+    return {
+      success: false,
+      error: 'Validation failed'
+    }
   }
 
-  return { success: true }
+  return {
+    success: true
+  }
 })
